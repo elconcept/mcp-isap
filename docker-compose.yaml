@@ -1,5 +1,5 @@
 # mcp-isap - akty prawne ISAP/ELI (api.sejm.gov.pl) (stdio z repo -> supergateway, Streamable HTTP /mcp, port 8000). Stack Portainera "mcp-isap".
-# Bez portu na hoscie. Dostep wylacznie: https://mcp-isap.xlap.pl/mcp - tunel cloudflared, bez Access (publiczny,
+# Port na hoscie 8406 (LAN, bez autoryzacji: http://10.0.10.201:8406/mcp). Z internetu: https://mcp-isap.xlap.pl/mcp - tunel cloudflared, bez Access (publiczny,
 # bezstanowy - konektory claude.ai/ChatGPT). cf_mcp_isap: cloudflared + ten serwis, z wyjsciem do internetu.
 # Przebudowa po pushu na main: deploy-hook (.github/workflows/deploy.yml).
 services:
@@ -12,6 +12,8 @@ services:
     user: "1029:100"
     environment:
       - TZ=Europe/Warsaw
+    ports:
+      - "8406:8000"
     networks:
       - cf_mcp_isap
     healthcheck:
