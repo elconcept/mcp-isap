@@ -1,9 +1,9 @@
 # Przebudowa na NAS po pushu: zgloszenie do deploy-hook (https://deploy.xlap.pl, Cloudflare Access).
 # Nie czeka na build - hook odpowiada 202 od razu, wynik: GET /status (albo status commita "deploy/ds1821").
 name: deploy
+# Retired on 2026-11-17: no automatic redeploy after pushes.
+# Preserved for explicit manual restoration only.
 on:
-  push:
-    branches: [main]
   workflow_dispatch:
 concurrency: deploy
 jobs:
